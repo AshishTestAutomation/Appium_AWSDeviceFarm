@@ -17,14 +17,17 @@ public class StartApplication {
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"Android");
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,"Android");
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"10");
-        capabilities.setCapability("appPackage", "com.sec.android.app.popupcalculator");
-        capabilities.setCapability("appActivity", "com.sec.android.app.popupcalculator.Calculator");
+        capabilities.setCapability("appPackage", "com.google.android.calculator");
+        capabilities.setCapability("appActivity", "com.google.android.calculator2.Calculator");
+        //capabilities.setCapability("appPackage", "com.sec.android.app.popupcalculator");
+        //capabilities.setCapability("appActivity", "com.sec.android.app.popupcalculator.Calculator");
+
         URL url=new URL("http://0.0.0.0:4723/wd/hub");
         AndroidDriver<MobileElement> driver= new AndroidDriver<>(url,capabilities);
         Thread.sleep(3000);
-        MobileElement two= driver.findElement(By.xpath("//android.widget.Button[@resource-id='com.sec.android.app.popupcalculator:id/calc_keypad_btn_02']"));
-        MobileElement plus= driver.findElement(By.xpath("//android.widget.Button[@resource-id='com.sec.android.app.popupcalculator:id/calc_keypad_btn_add']"));
-        MobileElement equal= driver.findElement(By.xpath("//android.widget.Button[@resource-id='com.sec.android.app.popupcalculator:id/calc_keypad_btn_equal']"));
+        MobileElement two= driver.findElement(By.xpath("//android.widget.Button[@resource-id='com.google.android.calculator:id/digit_2']"));
+        MobileElement plus= driver.findElement(By.xpath("//android.widget.Button[@resource-id='com.google.android.calculator:id/op_add']"));
+        MobileElement equal= driver.findElement(By.xpath("//android.widget.Button[@resource-id='com.google.android.calculator:id/eq']"));
         two.click();
         Thread.sleep(1000);
         plus.click();
@@ -33,7 +36,7 @@ public class StartApplication {
         Thread.sleep(1000);
         equal.click();
         Thread.sleep(2500);
-        MobileElement total= driver.findElement(By.id("com.sec.android.app.popupcalculator:id/calc_edt_formula"));
+        MobileElement total= driver.findElement(By.id("com.google.android.calculator:id/result_final"));
         String result=total.getText();
         System.out.println("Output on Calc display: "+result);
         if(result.equalsIgnoreCase("4")){
